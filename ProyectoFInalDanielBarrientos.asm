@@ -208,7 +208,7 @@ captura proc near                                 		;procedimiento para capturar
 	                call  convertirHexa               	;llama la funcion para convertir
 	                cmp   ax,0008H                     ;Se ha encontrado un caracter invalido
 	                je    msgError
-                    cmp   ax,0036H                     ;no ha completado los bits
+                        cmp   ax,0036H                     ;no ha completado los bits
 	                je    msgError2
 	                pop   ax
 	                mov   num1,bx                     	;mueve el resultado a una variable
@@ -224,7 +224,7 @@ captura proc near                                 		;procedimiento para capturar
 	                call  convertirHexa               	;llama la funcion para convertir
 	                cmp   ax,0008H
 	                je    msgError
-                    cmp   ax,0036H
+                        cmp   ax,0036H
 	                je    msgError2
 	                pop   ax
 	                mov   num2,bx                     	;mueve el resultado a una variable
@@ -267,11 +267,11 @@ convertirHexa proc near                           		;procedimiento que convierte
 	            jnz   cnum1                       	;brinca a convertir numero dos
 	            mov   di, offset num1d+1
 	            mov   cx,[di]
-                push cx
-                xor ch,ch
-                cmp cx,4
-                jb wrong2
-                pop cx
+                    push cx
+                    xor ch,ch
+                    cmp cx,4
+                    jb wrong2
+                    pop cx
 	            mov   si, offset num1d+2
 	            jmp   cnum2
 	cnum1:          
@@ -279,11 +279,11 @@ convertirHexa proc near                           		;procedimiento que convierte
 	            mov   di, offset num2d+1
 	            mov   cx,[di]
 	            mov   si, offset num2d+2
-                push cx
-                xor ch,ch
-                cmp cx,4
-                jb wrong2
-                pop cx
+                    push cx
+                    xor ch,ch
+                    cmp cx,4
+                    jb wrong2
+                    pop cx
 	cnum2:          
 	            xor   ch,ch
 	            mov   di, offset potencia
@@ -320,7 +320,7 @@ convertirHexa proc near                           		;procedimiento que convierte
 	            mov   ax,0008H
 	            jmp   final
   	wrong2:          
-                pop cx
+                    pop cx
 	            mov   ax,0036H
 	            jmp   final			
 
@@ -390,7 +390,7 @@ AddMethod proc near                               		;procedimiento que realiza l
 	                adc   dx,0                        	;si hay acarreo
 					jmp suma1
 					
-	OverSuma: 	    mov   dl,00h
+	OverSuma: 	mov   dl,00h
 	                mov   dh,10
 	                push  ax
 	                call  Acursor
@@ -404,7 +404,7 @@ AddMethod proc near                               		;procedimiento que realiza l
 	suma1:          
 	                xor   dx,dx             ;evitamos un posible problema al imprimir
 	                call  convierte_ascii
-					jmp final1
+			jmp final1
 	final1:
 	                ret
 AddMethod endp                                    		;final de la suma
@@ -417,14 +417,14 @@ SubMethod proc near                               		;realiza la resta
 	                xor   dx,dx
 	                mov   ax,num1                     	;almacena numero 1
 	                mov   bx, num2                    	;almacena numero 2
-					cmp ax,bx
+			cmp ax,bx
 	                sub   ax, bx                      	;hace la resta
-					jo  OverResta
+			jo  OverResta
 	                jnc   resta1                      	;si no hay acarreo
 	                sbb   dx,0                        	;si hay acarreo
-					jmp resta1
+			jmp resta1
 
-	OverResta: 	    mov   dl,00h
+	OverResta: 	mov   dl,00h
 	                mov   dh,10
 	                push  ax
 	                call  Acursor
@@ -433,10 +433,10 @@ SubMethod proc near                               		;realiza la resta
 	                mov   ah,0                        	;captura la tecla
 	                int   16h
 	                pop   ax
-					jmp final2
+			jmp final2
 	resta1:         
 
-					xor   dx,dx
+			xor   dx,dx
 	                call  convierte_ascii
 	final2:
 	                ret
@@ -484,7 +484,7 @@ divisionMethod proc near                          		;realiza la division
 	                jne   residuo
 	                jmp   convAs
 
-   OverDiv: 	    mov   dl,00h
+   OverDiv: 	        mov   dl,00h
 	                mov   dh,10
 	                push  ax
 	                call  Acursor
@@ -493,7 +493,7 @@ divisionMethod proc near                          		;realiza la division
 	                mov   ah,0                        	;captura la tecla
 	                int   16h
 	                pop   ax
-					jmp endo
+			jmp endo
 	
 	residuo:        
 	                mov   dl,00h
