@@ -385,10 +385,10 @@ AddMethod proc near                               		;procedimiento que realiza l
 	                mov   ax,num1                     	;almacena numero 1
 	                mov   bx,num2                     	;almacena numero 2
 	                add   ax,bx                       	;realiza la suma
-					jo  OverSuma
+			jo  OverSuma
 	                jnc   suma1                       	;si no hay acarreo
 	                adc   dx,0                        	;si hay acarreo
-					jmp suma1
+			jmp suma1
 					
 	OverSuma: 	mov   dl,00h
 	                mov   dh,10
@@ -399,7 +399,7 @@ AddMethod proc near                               		;procedimiento que realiza l
 	                mov   ah,0                        	;captura la tecla
 	                int   16h
 	                pop   ax
-					jmp final1
+			jmp final1
 	                		
 	suma1:          
 	                xor   dx,dx             ;evitamos un posible problema al imprimir
@@ -407,7 +407,7 @@ AddMethod proc near                               		;procedimiento que realiza l
 			jmp final1
 	final1:
 	                ret
-AddMethod endp                                    		;final de la suma
+AddMethod endp                                    	;final de la suma
 
 	;------------------------------------------------------------------------
 	;resta
@@ -449,8 +449,8 @@ MulMethod proc near                               		;procedimeinto que multiplic
 	                mov   ax,num1
 	                mov   bx,num2
 	                mul   bx
-                    jo OverMul
-					jmp mul1
+                        jo OverMul
+			jmp mul1
 OverMul: 	        mov   dl,00h
 	                mov   dh,10
 	                push  ax
@@ -460,7 +460,7 @@ OverMul: 	        mov   dl,00h
 	                mov   ah,0                        	;captura la tecla
 	                int   16h
 	                pop   ax
-					jmp final3
+			jmp final3
 
 mul1:
 	                xor   dx,dx
@@ -479,7 +479,7 @@ divisionMethod proc near                          		;realiza la division
 	                cmp   bx,0000h  ;antes de hacer la division compara bx con Cero
 	                je    esCero
 	                div   bx
-					jo OverDiv
+			jo OverDiv
 	                cmp   dx,0000h ; evalua el residuo
 	                jne   residuo
 	                jmp   convAs
